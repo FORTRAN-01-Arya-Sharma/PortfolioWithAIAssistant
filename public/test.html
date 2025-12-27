@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vite Public Folder Test</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0; /* Light background to ensure div is visible */
+        }
+        .test-div {
+            width: 80vw;   /* Large enough to clearly see */
+            height: 80vh;  /* Large enough to clearly see */
+            background-image: url('/assets/sky.jpg'); /* Direct path to your image */
+            background-size: cover;
+            background-position: center;
+            border: 5px solid red; /* A strong border to make the div obvious */
+        }
+    </style>
+
+<img src="/mountain-1.png" width="300" />
+<img src="/mountain-2.png" width="300" />
+<img src="/mountain-3.png" width="300" />
+<img src="/planets.png" width="300" />
+<img src="/sky.jpg" width="300" />
+</head>
+<body>
+    <h1>Testing Image Loading</h1>
+    <div class="test-div"></div>
+</body>
+</html>
