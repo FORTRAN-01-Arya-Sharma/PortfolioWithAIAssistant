@@ -1,15 +1,14 @@
 export const myProjects = [
   {
     id: 1,
-    title: "Personal Ashgrtz Fitness Clothing Brand (Full Stack)",
+    title: "AshFit | Full-Stack E-commerce Platform",
     description:
       "All custom AI featured products of the personal brand ",
     subDescription: [
-      "Developed a full-stack e-commerce platform from scratch using HTML, CSS, and vanilla JavaScript for the frontend, powered by a secure Node.js/Express.js RESTful API and a MySQL database. Implemented core features including JWT-based user authentication, a dynamic shopping cart, a multi-step checkout process with email confirmation, and a complete admin panel for product and order management.",
+      "Developed AshFit, a high-performance full-stack e-commerce platform built with React.js, Node.js, and SQL. Engineered a decoupled architecture featuring a RESTful API with 30+ endpoints, achieving sub-200ms latency for real-time transactions. I streamlined operations by building a custom Admin Dashboard that reduced manual inventory management time by 50% and ensured 100% data integrity through automated Postman testing. To prioritize security, I implemented Role-Based Access Control (RBAC) and custom middleware to safeguard sensitive user and administrative data.",
       
     ],
-    href: "",
-    logo: "",
+    href: "https://ash-fit.vercel.app",
     image: "/assets/projects/AshFitness.png",
     tags: [
       {
@@ -31,15 +30,14 @@ export const myProjects = [
   },
   {
     id: 2,
-    title: "Work in progress.....(Full Stack)",
+    title: "AshStar | AI-Powered Gamified SaaS Platform",
     description:
-      "work in progress",
+      "AshStar is an AI-powered, gamified SaaS platform with resilient multi-model intelligence",
     subDescription: [
-      "work in progress/...............",
+      "AshStar is a high-performance, AI-powered gamified SaaS platform built using React, Node.js, and MongoDB. I engineered a visually immersive frontend utilizing GSAP and Lenis Scroll, achieving 95+ Lighthouse performance scores through hardware-accelerated animations. To ensure 24/7 reliability, I developed a multi-model failover system for the Google Gemini API and designed a complex MongoDB 'Neural Memory' schema to maintain data integrity across thousands of user interactions. Furthermore, I optimized the development lifecycle by implementing Docker, which reduced deployment times by 30% and ensured consistent production environments.",
     ],
     href: "",
-    logo: "",
-    image: "/assets/projects/auth-system.jpg",
+    image: "/assets/projects/AiAssistant.png",
     tags: [
       {
         id: 1,
