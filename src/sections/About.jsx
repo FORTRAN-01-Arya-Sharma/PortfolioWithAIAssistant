@@ -5,7 +5,7 @@ import React, { useRef } from 'react';
 import Card from '../components/Card';
 import { Globe } from '../components/Globe';
 import CopyEmailButton from '../components/CopyEmailButton';
-import { Frameworks } from "../components/FrameWorks";
+import { Frameworks } from "../components/Frameworks";
 
 // --- MODIFICATION 1: Data-Driven Approach for "Code is Craft" Cards ---
 // This makes it easier to add, remove, or change items without cluttering the JSX.
