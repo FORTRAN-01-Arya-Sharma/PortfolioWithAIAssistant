@@ -10,61 +10,40 @@ const ParallaxBackground = () => {
   const mountain1Y = useTransform(x, [0, 0.5], ["0%", "0%"]);
 
   return (
-    <section className="absolute inset-0">
-      {/* ✅ Lighter Dark Overlay */}
-      <div className="absolute inset-0 bg-black/40 z-0" />
-
-      <div className="relative h-screen overflow-y-hidden">
-        {/* Background Sky Layer */}
-        <div
-          className="absolute inset-0 w-full h-screen -z-50"
-          style={{
-            backgroundImage: "url('/assets/sky.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "bottom",
-          }}
+    <section className="absolute inset-0 w-full h-full overflow-hidden z-0">
+      
+      {/* 1. Base Sky Layer - Changed extension to .jpg */}
+      <div className="absolute inset-0 w-full h-full">
+        <img 
+          src="/assets/sky.jpg" 
+          alt="Sky"
+          className="w-full h-full object-cover"
+          loading="eager"
+          fetchpriority="high" 
         />
-        {/* Mountain Layer 3 */}
-        <motion.div
-          className="absolute inset-0 w-full h-screen -z-40"
-          style={{
-            backgroundImage: "url('/assets/mountain-3.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "bottom",
-            y: mountain3Y,
-          }}
-        />
-        {/* Planets Layer */}
-        <motion.div
-          className="absolute inset-0 w-full h-screen -z-30"
-          style={{
-            backgroundImage: "url(/assets/planets.png)",
-            backgroundSize: "cover",
-            backgroundPosition: "bottom",
-            x: planetsX,
-          }}
-        />
-        {/* Mountain Layer 2 */}
-        <motion.div
-          className="absolute inset-0 w-full h-screen -z-20"
-          style={{
-            backgroundImage: "url('/assets/mountain-2.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "bottom",
-            y: mountain2Y,
-          }}
-        />
-        {/* Mountain Layer 1 */}
-        <motion.div
-          className="absolute inset-0 w-full h-screen -z-10"
-          style={{
-            backgroundImage: "url('/assets/mountain-1.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "bottom",
-            y: mountain1Y,
-          }}
-        />
+        {/* Overlay to ensure text stays readable */}
+        <div className="absolute inset-0 bg-black/40" />
       </div>
+
+      {/* 2. Mountain Layer 3 - Changed to .png */}
+      <motion.div className="absolute inset-0 w-full h-full" style={{ y: mountain3Y }}>
+        <img src="/assets/mountain-3.png" alt="" className="w-full h-full object-cover object-bottom" />
+      </motion.div>
+
+      {/* 3. Planets Layer - Changed to .png */}
+      <motion.div className="absolute inset-0 w-full h-full" style={{ x: planetsX }}>
+        <img src="/assets/planets.png" alt="" className="w-full h-full object-cover object-bottom" />
+      </motion.div>
+
+      {/* 4. Mountain Layer 2 - Changed to .png */}
+      <motion.div className="absolute inset-0 w-full h-full" style={{ y: mountain2Y }}>
+        <img src="/assets/mountain-2.png" alt="" className="w-full h-full object-cover object-bottom" />
+      </motion.div>
+
+      {/* 5. Mountain Layer 1 - Changed to .png */}
+      <motion.div className="absolute inset-0 w-full h-full" style={{ y: mountain1Y }}>
+        <img src="/assets/mountain-1.png" alt="" className="w-full h-full object-cover object-bottom" />
+      </motion.div>
     </section>
   );
 };

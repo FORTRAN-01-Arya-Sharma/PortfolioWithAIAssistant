@@ -3,7 +3,6 @@
 import createGlobe from "cobe";
 import { useMotionValue, useSpring } from "motion/react";
 import { useEffect, useRef } from "react";
-
 import { twMerge } from "tailwind-merge";
 
 const MOVEMENT_DAMPING = 1400;
@@ -69,6 +68,9 @@ export function Globe({
   };
 
   useEffect(() => {
+    // Check if device is mobile for performance optimization
+    const isMobile = window.innerWidth < 768;
+
     const onResize = () => {
       if (canvasRef.current) {
         width = canvasRef.current.offsetWidth;
@@ -80,6 +82,9 @@ export function Globe({
 
     const globe = createGlobe(canvasRef.current, {
       ...config,
+      // MOBILE FIX: Reduce mapSamples from 16000 to 4000 on mobile only
+      // This is the #1 performance killer for Globe components
+      mapSamples: isMobile ? 4000 : 16000,
       width: width * 2,
       height: width * 2,
       onRender: (state) => {
@@ -90,7 +95,11 @@ export function Globe({
       },
     });
 
-    setTimeout(() => (canvasRef.current.style.opacity = "1"), 0);
+    // Added a small check to ensure opacity is only set if ref exists
+    setTimeout(() => {
+        if (canvasRef.current) canvasRef.current.style.opacity = "1";
+    }, 0);
+
     return () => {
       globe.destroy();
       window.removeEventListener("resize", onResize);
