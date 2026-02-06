@@ -36,7 +36,7 @@ export const myProjects = [
     subDescription: [
       "AshStar is a high-performance, AI-powered gamified SaaS platform built using React, Node.js, and MongoDB. I engineered a visually immersive frontend utilizing GSAP and Lenis Scroll, achieving 95+ Lighthouse performance scores through hardware-accelerated animations. To ensure 24/7 reliability, I developed a multi-model failover system for the Google Gemini API and designed a complex MongoDB 'Neural Memory' schema to maintain data integrity across thousands of user interactions. Furthermore, I optimized the development lifecycle by implementing Docker, which reduced deployment times by 30% and ensured consistent production environments.",
     ],
-    href: "",
+    href: "https://ash-star-with-ai-assistant.vercel.app/",
     image: "/assets/projects/AiAssistant.jpg",
     tags: [
       {
