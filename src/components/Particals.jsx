@@ -6,6 +6,7 @@ export const Particles = ({
   quantity = 100,
   size = 0.4,
   color = "#ffffff",
+  refresh = false, // 1. Destructure refresh so it doesn't go into ...props
   ...props
 }) => {
   const canvasRef = useRef(null);
@@ -18,7 +19,8 @@ export const Particles = ({
     if (canvasRef.current) context.current = canvasRef.current.getContext("2d");
     
     const isMobile = window.innerWidth < 768;
-    const count = isMobile ? 30 : quantity; // Drastically reduce only on mobile
+    // Performance: Half the particles on mobile if not already handled
+    const count = isMobile ? Math.min(30, quantity) : quantity; 
 
     const initCanvas = () => {
       if (!containerRef.current || !canvasRef.current) return;
@@ -44,21 +46,27 @@ export const Particles = ({
     };
 
     const animate = () => {
-      if (!context.current) return;
+      if (!context.current || !containerRef.current) return;
       const w = containerRef.current.offsetWidth;
       const h = containerRef.current.offsetHeight;
       context.current.clearRect(0, 0, w, h);
 
       circles.current.forEach((c) => {
-        c.x += c.dx; c.y += c.dy;
+        c.x += c.dx; 
+        c.y += c.dy;
         if (c.a < c.ta) c.a += 0.01;
+        
         context.current.beginPath();
         context.current.arc(c.x, c.y, c.s, 0, Math.PI * 2);
-        context.current.fillStyle = `rgba(255, 255, 255, ${c.a})`;
+        
+        // Performance: Use the hex color passed in props instead of hardcoded white
+        context.current.fillStyle = `${color}${Math.floor(c.a * 255).toString(16).padStart(2, '0')}`;
         context.current.fill();
 
         if (c.x < 0 || c.x > w || c.y < 0 || c.y > h) {
-          c.x = Math.random() * w; c.y = Math.random() * h; c.a = 0;
+          c.x = Math.random() * w; 
+          c.y = Math.random() * h; 
+          c.a = 0;
         }
       });
       rafID.current = requestAnimationFrame(animate);
@@ -67,13 +75,16 @@ export const Particles = ({
     initCanvas();
     animate();
     window.addEventListener("resize", initCanvas);
+    
     return () => {
       window.removeEventListener("resize", initCanvas);
       cancelAnimationFrame(rafID.current);
     };
-  }, [quantity]);
+    // 2. Add refresh to dependency array so it actually re-initializes if requested
+  }, [quantity, size, color, refresh]);
 
   return (
+    // 3. props no longer contains 'refresh', so the warning disappears
     <div className={twMerge("absolute inset-0 pointer-events-none", className)} ref={containerRef} {...props}>
       <canvas ref={canvasRef} />
     </div>

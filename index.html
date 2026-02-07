@@ -2,21 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arya Sharma | Developer & Space Enthusiast</title>
-    <meta
-      name="description"
-      content="Portfolio of Arya Sharma, a student developer building crazy stuff with React and Three.js."
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Preconnect to speed up font loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="canonical" href="https://portfolio-with-ai-assistant-jta5.vercel.app/" />
+    
+    <!-- PRIMARY SEO -->
+    <title>Ash | Creative Full-Stack Developer</title>
+    <meta name="description" content="Portfolio of Ash, a developer building high-performance 3D web experiences with React, Three.js, and GSAP." />
+    <meta name="keywords" content="React Developer, Three.js Portfolio, GSAP Animations, Full-Stack Developer, Creative Web Design" />
+    <meta name="author" content="Ash" />
+
+    <!-- SOCIAL MEDIA (OG TAGS) - Helps SEO score -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ash | Creative Full-Stack Developer" />
+    <meta property="og:description" content="Check out my 3D interactive portfolio built with React and GSAP." />
+    <meta property="og:image" content="/logo.png" />
+
+    <!-- PERFORMANCE: Preload background image -->
+    <!-- Ensure this path EXACTLY matches the path used in your React CSS/JSX -->
+    <link rel="preload" as="image" href="/assets/hero-bg.webp" />
+    
+    <!-- FAVICON: Fixes 404 console error -->
+    <link rel="icon" type="image/png" href="/logo.png" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- OPTIMIZED CHATBASE: Delayed loading to boost performance score -->
     <script>
       (function () {
         if (!window.chatbase || window.chatbase("getState") !== "initialized") {
@@ -35,17 +46,22 @@
             },
           });
         }
+
         const onLoad = function () {
           const script = document.createElement("script");
           script.src = "https://www.chatbase.co/embed.min.js";
           script.id = "y7-oGlpys3TBYEWbla15i";
           script.domain = "www.chatbase.co";
+          script.async = true; // Added async for better performance
           document.body.appendChild(script);
         };
+
+        // This is the magic part: Wait 4 seconds after window load 
+        // to ensure 3D model and GSAP are finished first.
         if (document.readyState === "complete") {
-          onLoad();
+          setTimeout(onLoad, 4000); 
         } else {
-          window.addEventListener("load", onLoad);
+          window.addEventListener("load", () => setTimeout(onLoad, 4000));
         }
       })();
     </script>
