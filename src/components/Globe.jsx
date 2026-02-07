@@ -7,40 +7,8 @@ import { twMerge } from "tailwind-merge";
 
 const MOVEMENT_DAMPING = 1400;
 
-const GLOBE_CONFIG = {
-  width: 800,
-  height: 800,
-  onRender: () => {},
-  devicePixelRatio: 2,
-  phi: 0,
-  theta: 0.3,
-  dark: 0,
-  diffuse: 0.4,
-  mapSamples: 16000,
-  mapBrightness: 1.2,
-  baseColor: [0.223, 1, 0.078],
-  markerColor: [251 / 255, 100 / 255, 21 / 255],
-  glowColor: [1, 1, 1],
-  markers: [
-    { location: [14.5995, 120.9842], size: 0.03 },
-    { location: [19.076, 72.8777], size: 0.1 },
-    { location: [23.8103, 90.4125], size: 0.05 },
-    { location: [30.0444, 31.2357], size: 0.07 },
-    { location: [39.9042, 116.4074], size: 0.08 },
-    { location: [-23.5505, -46.6333], size: 0.1 },
-    { location: [19.4326, -99.1332], size: 0.1 },
-    { location: [40.7128, -74.006], size: 0.1 },
-    { location: [34.6937, 135.5022], size: 0.05 },
-    { location: [41.0082, 28.9784], size: 0.06 },
-  ],
-};
-
-export function Globe({
-  className,
-  config = GLOBE_CONFIG,
-}) {
+export function Globe({ className }) {
   let phi = 0;
-  let width = 0;
   const canvasRef = useRef(null);
   const pointerInteracting = useRef(null);
   const pointerInteractionMovement = useRef(0);
@@ -68,9 +36,10 @@ export function Globe({
   };
 
   useEffect(() => {
-    // Check if device is mobile for performance optimization
-    const isMobile = window.innerWidth < 768;
-
+    let width = 0;
+    // PERFORMANCE: Check for mobile
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
     const onResize = () => {
       if (canvasRef.current) {
         width = canvasRef.current.offsetWidth;
@@ -81,10 +50,28 @@ export function Globe({
     onResize();
 
     const globe = createGlobe(canvasRef.current, {
-      ...config,
-      // MOBILE FIX: Reduce mapSamples from 16000 to 4000 on mobile only
-      // This is the #1 performance killer for Globe components
-      mapSamples: isMobile ? 4000 : 16000,
+      devicePixelRatio: isMobile ? 1 : 2, // PERFORMANCE: Lower res on mobile
+      phi: 0,
+      theta: 0.3,
+      dark: 0,
+      diffuse: 0.4,
+      mapSamples: isMobile ? 3000 : 6000, // PERFORMANCE: Reduced dots (Big Score Boost)
+      mapBrightness: 1.2,
+      baseColor: [0.223, 1, 0.078],
+      markerColor: [251 / 255, 100 / 255, 21 / 255],
+      glowColor: [1, 1, 1],
+      markers: [
+        { location: [14.5995, 120.9842], size: 0.03 },
+        { location: [19.076, 72.8777], size: 0.1 },
+        { location: [23.8103, 90.4125], size: 0.05 },
+        { location: [30.0444, 31.2357], size: 0.07 },
+        { location: [39.9042, 116.4074], size: 0.08 },
+        { location: [-23.5505, -46.6333], size: 0.1 },
+        { location: [19.4326, -99.1332], size: 0.1 },
+        { location: [40.7128, -74.006], size: 0.1 },
+        { location: [34.6937, 135.5022], size: 0.05 },
+        { location: [41.0082, 28.9784], size: 0.06 },
+      ],
       width: width * 2,
       height: width * 2,
       onRender: (state) => {
@@ -95,28 +82,21 @@ export function Globe({
       },
     });
 
-    // Added a small check to ensure opacity is only set if ref exists
-    setTimeout(() => {
-        if (canvasRef.current) canvasRef.current.style.opacity = "1";
-    }, 0);
+    // Guaranteed visibility
+    if (canvasRef.current) {
+        canvasRef.current.style.opacity = "1";
+    }
 
     return () => {
       globe.destroy();
       window.removeEventListener("resize", onResize);
     };
-  }, [rs, config]);
+  }, [rs]);
 
   return (
-    <div
-      className={twMerge(
-        "mx-auto aspect-[1/1] w-full max-w-[600px]",
-        className,
-      )}
-    >
+    <div className={twMerge("mx-auto aspect-[1/1] w-full max-w-[600px] flex items-center justify-center", className)}>
       <canvas
-        className={twMerge(
-          "size-[30rem] opacity-0 transition-opacity duration-500 [contain:layout_paint_size]",
-        )}
+        className="size-[20rem] sm:size-[25rem] md:size-[30rem] transition-opacity duration-500 [contain:layout_paint_size] opacity-0"
         ref={canvasRef}
         onPointerDown={(e) => {
           pointerInteracting.current = e.clientX;
@@ -125,9 +105,7 @@ export function Globe({
         onPointerUp={() => updatePointerInteraction(null)}
         onPointerOut={() => updatePointerInteraction(null)}
         onMouseMove={(e) => updateMovement(e.clientX)}
-        onTouchMove={(e) =>
-          e.touches[0] && updateMovement(e.touches[0].clientX)
-        }
+        onTouchMove={(e) => e.touches[0] && updateMovement(e.touches[0].clientX)}
       />
     </div>
   );

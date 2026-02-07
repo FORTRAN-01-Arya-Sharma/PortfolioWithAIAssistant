@@ -27,7 +27,7 @@ const ParallaxBackground = () => {
 
       {/* 2. Mountain Layer 3 - Changed to .png */}
       <motion.div className="absolute inset-0 w-full h-full" style={{ y: mountain3Y }}>
-        <img src="/assets/mountain-3.png" alt="" className="w-full h-full object-cover object-bottom" />
+        <img src="/assets/mountain-3.webp" alt="" className="w-full h-full object-cover object-bottom" />
       </motion.div>
 
       {/* 3. Planets Layer - Changed to .png */}
@@ -37,12 +37,12 @@ const ParallaxBackground = () => {
 
       {/* 4. Mountain Layer 2 - Changed to .png */}
       <motion.div className="absolute inset-0 w-full h-full" style={{ y: mountain2Y }}>
-        <img src="/assets/mountain-2.png" alt="" className="w-full h-full object-cover object-bottom" />
+        <img src="/assets/mountain-2.webp" alt="" className="w-full h-full object-cover object-bottom" />
       </motion.div>
 
       {/* 5. Mountain Layer 1 - Changed to .png */}
       <motion.div className="absolute inset-0 w-full h-full" style={{ y: mountain1Y }}>
-        <img src="/assets/mountain-1.png" alt="" className="w-full h-full object-cover object-bottom" />
+        <img src="/assets/mountain-1.webp" alt="" className="w-full h-full object-cover object-bottom" />
       </motion.div>
     </section>
   );

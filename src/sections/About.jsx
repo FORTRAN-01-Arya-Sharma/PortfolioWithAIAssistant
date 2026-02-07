@@ -26,7 +26,7 @@ const IntroCard = () => (
     <div className='flex items-end grid-default-color grid-1'>
         {/* MODIFICATION 3: Added descriptive alt tag for accessibility */}
         <img
-            src="assets/coding-pov.png"
+            src="assets/coding-pov.webp"
             alt="Developer's point-of-view of code on a screen"
             className='absolute scale-[1.75] -right-[5rem] -top-[1rem] md:scale-[3] md:left-50 md:inset-y-10 lg:scale-[2.5]'
         />
