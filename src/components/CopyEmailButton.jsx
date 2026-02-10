@@ -43,7 +43,7 @@ const CopyEmailButton = () => {
         transition={{duration:0.1}}
         >
            <img src="assets/copy.svg" className="w-5" alt="copy icon" /> 
-            Email Address</motion.p>)}
+            INITIATE_ACCESS</motion.p>)}
             </AnimatePresence>
     </motion.button>
   )

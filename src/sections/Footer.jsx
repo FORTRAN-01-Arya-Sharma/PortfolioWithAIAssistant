@@ -6,9 +6,11 @@ const Footer = () => {
     <section className="flex flex-wrap items-center justify-center gap-5 pb-3 text-sm text-neutral-400 c-space">
         <div className="bg-gradient-to-r from-transparent via-neutral-700 to-transparent h-[1px] w-full"/>
         <div className="flex gap-2">
-            <p>Terms & Conditions</p>
+            <p>SYSTEM_V4.0.2</p>
             <p>|</p>
-            <p>Privacy Policy</p>
+            <p>BUILT_BY_ARYA_SHARMA</p>
+            <p>|</p>
+            <p>STATUS: OPERATIONAL</p>
         </div>
         <div className="flex gap-3">
             {mySocials.map((social, index) =>(

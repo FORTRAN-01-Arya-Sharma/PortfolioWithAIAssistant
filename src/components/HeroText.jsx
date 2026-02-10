@@ -5,7 +5,7 @@ import { motion } from "framer-motion" // Correct import for framer-motion
 
 const HeroText = () => {
     // Define the array of words to be used by the FlipWords component.
-    const Words = ["Smart", "Jacked", "Leader"]
+    const Words = ["Real-time", "Optimized ", "Concurrent"]
 
     // Define animation variants for framer-motion components.
     // These variants control the initial and animated states of elements.
@@ -25,7 +25,7 @@ const HeroText = () => {
         <div className="z-10 mt-20 text-center md:mt-40 md:text-left rounded-3xl bg-clip-text">
             {/* Desktop view: This div is hidden on small screens (md:hidden)
                 and displayed as a flex column on medium and larger screens (md:flex). */}
-            <div className="flex-col hidden md:flex c-space">
+            <div className="flex-col hidden md:flex c-space text-green-400 text-shadow-black font-extrabold">
                 {/* Animated H1 element for the "Hi I'm Ash" text. */}
                 <motion.h1
                     className="text-4xl font-medium"
@@ -34,18 +34,24 @@ const HeroText = () => {
                     animate="visible"    // Animates the element to the 'visible' state.
                     transition={{ delay: 1 }} // Adds a 1-second delay before this animation starts.
                 >
-                    Hi I'm Ash
+                    SYSTEM_V4.02_ONLINE
                 </motion.h1>
                 <div className="flex flex-col items-start">
                     {/* Animated paragraph for "A Developer Who Builds Crazy Stuff". */}
                     <motion.p
-                        className="text-5xl font-medium text-neutral-300"
+                        className="text-5xl font-black tracking-tighter leading-none 
+               text-black/75 hover:text-white/80 transition-all duration-700 
+               cursor-default uppercase"
                         variants={variants}
                         initial="hidden"
                         animate="visible"
-                        transition={{ delay: 1.2 }} // Starts slightly after the H1 animation.
+                        whileHover={{ scale: 1.02, textShadow: "0 0 20px rgba(255,255,255,0.5)" }}
+                        transition={{ delay: 1.2 }}
                     >
-                        A Developer <br />Who Builds Crazy Stuff
+                        NEBULA-ENGINE: <br />
+                        <span className="text-2xl font-mono tracking-widest">
+                            HARDWARE-ACCELERATED SPATIAL UI
+                        </span>
                     </motion.p>
                     {/* Animated div containing the FlipWords component. */}
                     <motion.div
@@ -62,13 +68,15 @@ const HeroText = () => {
                     </motion.div>
                     {/* Animated paragraph for "Portfolio". */}
                     <motion.p
-                        className="text-4xl font-medium text-neutral-250"
+                        className="text-2xl font-black tracking-tighter leading-none 
+               text-black/75 hover:text-white/90 transition-all duration-700 
+               cursor-default uppercase"
                         variants={variants}
                         initial="hidden"
                         animate="visible"
                         transition={{ delay: 1.7 }} // Starts after the FlipWords animation.
                     >
-                        Portfolio
+                         ARCHITECTED BY ARYA SHARMA
                     </motion.p>
                 </div>
             </div>

@@ -65,15 +65,15 @@ const Contact = () => {
             />
             <div className="flex flex-col items-center justify-center max-w-md p-5 mx-auto border border-white/10 rounded-2xl bg-primary">
                 <div>
-                    <h2 className="text-heading">Contact Here</h2>
+                    <h2 className="text-heading">INITIATE_HANDSHAKE</h2>
                     <p className="font-normal text-neutral-400">
-                        If you like my work and are looking to build websites or create something exciting, feel free to reach out
+                        System is ready for high-concurrency collaborations and architectural consulting.
                     </p>
                 </div>
                 <form className="w-full" onSubmit={handleSubmit} noValidate>
                     <div className="mb-5">
                         <label htmlFor="name" className="feild-lable">
-                            Full Name
+                            SENDER_IDENTITY
                         </label>
                         <input
                             id="name"
@@ -88,7 +88,7 @@ const Contact = () => {
                     </div>
                     <div className="mb-5">
                         <label htmlFor="email" className="feild-lable">
-                            Email
+                            REPLY_VECTOR
                         </label>
                         <input
                             id="email"
@@ -103,7 +103,7 @@ const Contact = () => {
                     </div>
                     <div className="mb-5">
                         <label htmlFor="message" className="feild-lable">
-                            I'am Listening
+                            MESSAGE_PAYLOAD
                         </label>
                         <textarea
                             id="message"
@@ -122,7 +122,7 @@ const Contact = () => {
                         className="w-full px-1 py-3 text-lg text-center rounded-md cursor-pointer bg-radial from-lavender to-royal hover-animation disabled:opacity-50 disabled:cursor-not-allowed"
                         disabled={isLoading}
                     >
-                        {isLoading ? "Sending..." : "Send Message"}
+                        {isLoading ? "Sending..." : "TRANSMIT_PACKET"}
                     </button>
 
                     {formStatus.submitted && (

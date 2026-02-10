@@ -4,10 +4,10 @@ import { Link } from 'react-scroll';
 
 function Navigation({ onLinkClick }) {
   const navLinks = [
-    { to: "home", label: "Home" },
-    { to: "about", label: "About" },
-    { to: "work", label: "Work" },
-    { to: "contact", label: "Contact" },
+    { to: "home", label: "DASHBOARD" },
+    { to: "about", label: "SYSTEM_ARCH" },
+    { to: "work", label: "DEPLOYMENTS" },
+    { to: "contact", label: "TERMINAL" },
   ];
 
   return (

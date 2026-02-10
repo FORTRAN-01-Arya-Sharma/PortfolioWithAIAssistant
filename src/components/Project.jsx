@@ -14,7 +14,7 @@ const Project = ({title , description, subDescription, href, image, tags}) => {
                 </div>
             </div>
             <button onClick={()=> setIsHidden(true)} className='flex items-center gap-1 cursor-pointer hover-animation'>
-                Read More
+                DEEPLINK_ACCESS
                 <img src="assets/arrow-right.svg" className='w-5' />
             </button>
         </div>
